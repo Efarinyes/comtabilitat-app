@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "comptabilitat-app": {
+      "hosting": {
+        "contabilitatApp": [
+          "comptabilitat-app"
+        ]
+      }
+    }
+  }
+}

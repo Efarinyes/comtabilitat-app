@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Afegir entrada/sortida</h4>
+                <p class="card-description">
+                    Especifica la quantitat i l'acció
+                </p>
+
+                <form>
+
+                    <div class="form-group">
+                        <label>Descripció</label>
+                        <input type="text" class="form-control" placeholder="Descripció" name="descripcion">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Quantitat</label>
+                        <input type="number" class="form-control" placeholder="Quantitat" name="monto">
+                        <p>
+                            Ha de ser una quantiutat positiva
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tipus</label>
+                        <br>
+                        <button type="button" class="btn btn-primary btn-block">Ingrés</button>
+                        <!-- <button type="button" class="btn btn-warning btn-block">Egreso</button> -->
+                    </div>
+
+                    <hr>
+                    <button type="button" class="btn btn-success mr-2">
+                <i class="fa fa-save"></i>
+                Afegir
+              </button>
+
+                    <!-- 
+                <button disabled class="btn btn-success mr-2">
+                  <i class="fa fa-spin fa-sync"></i>
+                  Espere por favor...
+                </button> 
+              -->
+
+                    <button type="reset" class="btn btn-light">Cancelar</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
