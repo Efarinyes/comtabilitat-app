@@ -6,11 +6,14 @@ import * as firebase from 'firebase';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
+import * as authActions from '../auth/auth.actions';
+import * as entradaSortidaActions from '../entrada-sortida/entrada-sortida.actions';
+
 import { Store } from '@ngrx/store';
 
 import { Usuari } from '../models/usuari.model';
 import { AppState } from '../app.reducer';
-import * as authActions from '../auth/auth.actions';
+
 
 
 @Injectable({
@@ -19,6 +22,11 @@ import * as authActions from '../auth/auth.actions';
 export class AuthService {
 
   userSubscription: Subscription;
+  private _user: Usuari;
+
+  get user() {
+    return {...this._user };
+  }
 
 
   constructor(
@@ -36,17 +44,20 @@ export class AuthService {
           .doc(`${fuser.uid}/usuari`)
           .valueChanges()
           .subscribe((firestoreUser: any) => {
-            console.log('firestoreUsere', firestoreUser );
+           // console.log('firestoreUser', firestoreUser );
             const usuari = Usuari.fromFirebase(firestoreUser);
-
+            this._user = usuari;
             this.store.dispatch(authActions.setUser({ usuari }));
+            
           });
       } else {
         // no tenim usuari
         if (this.userSubscription) {
+          this._user = null;
           this.userSubscription.unsubscribe();
         }
         this.store.dispatch(authActions.unSetUser());
+        this.store.dispatch(entradaSortidaActions.unSetItems());
       }
     });
   }

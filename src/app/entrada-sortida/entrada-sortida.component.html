@@ -7,16 +7,16 @@
                     Especifica la quantitat i l'acció
                 </p>
 
-                <form>
+                <form [formGroup]='ingresForm' (ngSubmit)='guardar()'>
 
                     <div class="form-group">
                         <label>Descripció</label>
-                        <input type="text" class="form-control" placeholder="Descripció" name="descripcion">
+                        <input type="text" class="form-control" formControlName='descripcio' placeholder="Descripció" name="descripcion">
                     </div>
 
                     <div class="form-group">
                         <label>Quantitat</label>
-                        <input type="number" class="form-control" placeholder="Quantitat" name="monto">
+                        <input type="number" class="form-control" formControlName='quantitat' placeholder="Quantitat" name="monto">
                         <p>
                             Ha de ser una quantiutat positiva
                         </p>
@@ -25,15 +25,21 @@
                     <div class="form-group">
                         <label>Tipus</label>
                         <br>
-                        <button type="button" class="btn btn-primary btn-block">Ingrés</button>
-                        <!-- <button type="button" class="btn btn-warning btn-block">Egreso</button> -->
+                        <!-- <button  type="button" class="btn btn-primary btn-block ">Ingrés</button>
+                        <button class="btn btn-warning btn-block">Despesa</button> -->
                     </div>
+                    <button *ngIf="tipus === 'ingres'" (click)="tipus = 'despesa'" type="button" class="btn btn-primary btn-block"> Ingrés</button>
+                    <button *ngIf="tipus === 'despesa'" (click)="tipus = 'ingres'" type="button" class="btn btn-warning btn-block"> Despesa</button>
 
                     <hr>
-                    <button type="button" class="btn btn-success mr-2">
-                <i class="fa fa-save"></i>
-                Afegir
-              </button>
+                    <button type="submit" class="btn btn-success mr-2" *ngIf='!carregant' [disabled]='ingresForm.invalid'>
+                            <i class="fa fa-save"></i>
+                            Afegir
+                    </button>
+                    <button type="button" class="btn btn-success mr-2" *ngIf='carregant' [disabled]='true'>
+                        <i class = 'fa fa-spin fa-sync'></i>
+                        Grabant...
+                    </button>
 
                     <!-- 
                 <button disabled class="btn btn-success mr-2">
