@@ -8,14 +8,14 @@
                         <i class="fa fa-money-bill-alt text-success icon-lg"></i>
                     </div>
                     <div class="float-right">
-                        <p class="mb-0 text-right">Ingresos</p>
+                        <p class="mb-0 text-right">Entrades</p>
                         <div class="fluid-container">
-                            <h3 class="font-weight-medium text-right mb-0">$65,650</h3>
+                            <h3 class="font-weight-medium text-right mb-0"> {{ totalEntrades | currency: 'EUR'}}</h3>
                         </div>
                     </div>
                 </div>
                 <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> 65% lower growth
+                    <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> {{ entrades }} items
                 </p>
             </div>
         </div>
@@ -30,16 +30,58 @@
                         <i class="fa fa-shipping-fast text-danger icon-lg"></i>
                     </div>
                     <div class="float-right">
-                        <p class="mb-0 text-right">Ingresos</p>
+                        <p class="mb-0 text-right">Sortides</p>
                         <div class="fluid-container">
-                            <h3 class="font-weight-medium text-right mb-0">$65,650</h3>
+                            <h3 class="font-weight-medium text-right mb-0"> {{ totalSortides | currency: 'EUR'}} </h3>
                         </div>
                     </div>
                 </div>
                 <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> 65% lower growth
+                    <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> {{ sortides }} items
                 </p>
             </div>
         </div>
     </div>
+</div>
+
+
+<div class="row m-5">
+
+    <div class="col-12">
+        <div class="card card-statistics">
+            <div class="card-body">
+
+                <div class="clearfix">
+                    <div class="float-left">
+                        <i class="fa fa-building text-info icon-lg"></i>
+                    </div>
+                    <div class="float-right">
+                        <p class="mb-0 text-right">Diferència</p>
+                        <div class="fluid-container">
+                            <h3 [class.text-success]='totalEntrades - totalSortides >= 0 ' [class.text-danger]='totalEntrades - totalSortides < 0' class="font-weight-medium text-right mb-0">
+                                {{ totalEntrades - totalSortides | currency }}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 p-5" *ngIf="entrades > 0 || sortides > 0">
+        <div class="card card-statistics">
+            <div class="card-body">
+                <h1 class="card-title">Gràfica</h1>
+
+                <div style="display: block">
+                    <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" chartType="doughnut">
+                    </canvas>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </div>

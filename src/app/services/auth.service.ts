@@ -48,7 +48,7 @@ export class AuthService {
             const usuari = Usuari.fromFirebase(firestoreUser);
             this._user = usuari;
             this.store.dispatch(authActions.setUser({ usuari }));
-            
+
           });
       } else {
         // no tenim usuari

@@ -64,7 +64,7 @@ export class RegistreComponent implements OnInit, OnDestroy {
 
     this.authservice.crearUsuari(nom, correu, password )
         .then( credencials => {
-          console.log(credencials);
+          // console.log(credencials);
           // Swal.close();
           this.store.dispatch( ui.stopLoading() );
           this.router.navigate(['/']);

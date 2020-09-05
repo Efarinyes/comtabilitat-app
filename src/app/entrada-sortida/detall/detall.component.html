@@ -15,17 +15,18 @@
                     </thead>
 
                     <tbody>
-                        <tr *ngFor="let item of entradesSortides">
+                        <tr *ngFor="let item of entradesSortides | odreIngres">
 
                             <td> {{ item.descripcio}} </td>
-                            <td> {{ item.quantitat | currency:'EUR':true:'1.2-2' }} </td>
+                            <td> {{ item.quantitat | currency:'EUR' }} </td>
                             <td [class.text-success]="item.tipus === 'ingres' " [class.text-danger]="item.tipus === 'despesa' ">
                                 {{ item.tipus }}
                             </td>
                             <td>
                                 <button type="button" class="btn btn-danger" (click)='borrar(item.uid)'>
+                                    <i class="fa fa-trash"></i> 
                                     Eliminar
-                                    <i class="fa fa-trash"></i>
+                                    
                                 </button>
                             </td>
                         </tr>

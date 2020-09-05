@@ -18,6 +18,7 @@ export class EntradaSortidaService {
     // Aqui va Tot
     // Inserció de document a Firestore
     const uid = this.authService.user.uid;
+    delete entradaSortida.uid;
 
     return this.firestore.doc(`${ uid }/entrada-sortida`)
         .collection('items')
@@ -36,5 +37,10 @@ export class EntradaSortidaService {
             )
           )
         );
+  }
+
+  borrarEntradaSortida( uidItem: string ) {
+       const uid = this.authService.user.uid;
+       return this.firestore.doc(`${ uid }/entrada-sortida/items/${ uidItem }`).delete();
   }
 }
