@@ -11,7 +11,15 @@ const routes: Routes = [
 
     { path: 'login', component: LoginComponent },
     { path: 'registre', component: RegistreComponent },
-    { path: '', component: DashboardComponent, children:  dashboardRoutes, canActivate: [ AuthGuard ] },
+    // Aixi es feia abans de modular l'aplicació per treballar amb LazyLoad
+    // { path: '', component: DashboardComponent, children:  dashboardRoutes, canActivate: [ AuthGuard ] },
+    // Amb LazyLad
+    {
+        path: '',
+        canLoad: [AuthGuard],
+        loadChildren: () => import('./entrada-sortida/entrada-sortida.module').then(m => m.EntradaSortidaModule)
+    },
+
     { path: '**', redirectTo: '' }
 
 ];

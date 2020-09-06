@@ -8,7 +8,7 @@ import * as entradaSortida from './entrada-sortida/entrada-sortida.reducer';
 export interface AppState {
    ui: ui.State;
    usuari: auth.State;
-   entradesSortides: entradaSortida.State;
+  // entradesSortides: entradaSortida.State;
 }
 
 
@@ -16,5 +16,5 @@ export interface AppState {
 export const appReducers: ActionReducerMap<AppState> = {
    ui: ui.uiReducer,
    usuari: auth. authReducer,
-   entradesSortides: entradaSortida.entradaSortidaReducer
+  // entradesSortides: entradaSortida.entradaSortidaReducer
 };

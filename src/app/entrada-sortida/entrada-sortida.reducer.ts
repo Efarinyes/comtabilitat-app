@@ -2,9 +2,14 @@
 import { createReducer, on } from '@ngrx/store';
 import { setItems, unSetItems } from './entrada-sortida.actions';
 import { EntradaSortida } from '../models/entrada-sortida.model';
+import { AppState } from '../app.reducer';
 
 export interface State {
     items: EntradaSortida[];
+}
+
+export interface AppStateWithEntrada extends AppState {
+    entradesSortides: State;
 }
 
 export const initialState: State = {

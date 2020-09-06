@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../app.reducer';
+
 import { EntradaSortida } from '../../models/entrada-sortida.model';
 import { Subscription } from 'rxjs';
 import { EntradaSortidaService } from '../../services/entrada-sortida.service';
 import Swal from 'sweetalert2';
+import { AppStateWithEntrada } from '../entrada-sortida.reducer';
 
 @Component({
   selector: 'app-detall',
@@ -17,7 +18,7 @@ export class DetallComponent implements OnInit, OnDestroy {
   entradesSortides: EntradaSortida[] = [];
   itemsSub: Subscription;
 
-  constructor( private store: Store<AppState>,
+  constructor( private store: Store<AppStateWithEntrada>,
                private entradaSortidaService: EntradaSortidaService ) { }
 
   ngOnInit(): void {

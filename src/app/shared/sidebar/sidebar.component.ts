@@ -13,7 +13,7 @@ import { filter } from 'rxjs/operators';
   ]
 })
 export class SidebarComponent implements OnInit, OnDestroy {
-  
+
   nom = '';
   userSubs: Subscription;
   constructor( private authService: AuthService, 

@@ -5,14 +5,13 @@ import { environment } from '../environments/environment';
 // Mòduls
 import { AppRoutingModule } from './app-routing.module';
 
-// Reactive Forms
-import { ReactiveFormsModule } from '@angular/forms';
-
 // NgRx
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducers } from './app.reducer';
 
+// Mòduls
+import { AuthModule } from './auth/auth.module';
 
 // AngulartFire
 import { AngularFireModule } from '@angular/fire';
@@ -20,44 +19,21 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 // Grafiques
-import { ChartsModule } from 'ng2-charts';
-
 import { AppComponent } from './app.component';
-import { LoginComponent } from './auth/login/login.component';
-import { RegistreComponent } from './auth/registre/registre.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { EntradaSortidaComponent } from './entrada-sortida/entrada-sortida.component';
-import { EstadisticaComponent } from './entrada-sortida/estadistica/estadistica.component';
-import { DetallComponent } from './entrada-sortida/detall/detall.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { OdreIngresPipe } from './pipes/odre-ingres.pipe';
-
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegistreComponent,
-    DashboardComponent,
-    EntradaSortidaComponent,
-    EstadisticaComponent,
-    DetallComponent,
-    FooterComponent,
-    NavbarComponent,
-    SidebarComponent,
-    OdreIngresPipe
   ],
   imports: [
     BrowserModule,
+    AuthModule,
+
     AppRoutingModule,
-    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    ChartsModule,
     StoreModule.forRoot( appReducers ),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states

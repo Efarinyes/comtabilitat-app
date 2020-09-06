@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../app.reducer';
+
 import { EntradaSortida } from 'src/app/models/entrada-sortida.model';
 
 // Grafiques
  // import { ChartType } from 'chart.js';
 import { MultiDataSet, Label } from 'ng2-charts';
+import { AppStateWithEntrada } from '../entrada-sortida.reducer';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class EstadisticaComponent implements OnInit {
 
 
 
-  constructor( private store: Store<AppState>) { }
+  constructor( private store: Store<AppStateWithEntrada>) { }
 
   ngOnInit(): void {
     this.store.select('entradesSortides').subscribe( ({ items }) => this.generarEstadistica(items));
@@ -52,6 +53,6 @@ export class EstadisticaComponent implements OnInit {
       }
       this.doughnutChartData = [[ this.totalEntrades, this.totalSortides]];
   }
-  
+
 
 }
